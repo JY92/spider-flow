@@ -5,10 +5,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.spiderflow.core.model.SpiderFlow;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -18,6 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author Administrator
  *
  */
+@Mapper
 public interface SpiderFlowMapper extends BaseMapper<SpiderFlow>{
 
 	@Select({
@@ -56,7 +54,7 @@ public interface SpiderFlowMapper extends BaseMapper<SpiderFlow>{
 	int resetSpiderStatus(@Param("id") String id, @Param("enabled") String enabled);
 
 	@Update("update sp_flow set next_execute_time = null where id = #{id}")
-	int resetNextExecuteTime(@Param("id") String id);
+	int resetNextExecuteTimeById(@Param("id") String id);
 
 	@Update("update sp_flow set next_execute_time = null")
 	int resetNextExecuteTime();
